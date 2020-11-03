@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
-
+import
 
 public class Main {
 
@@ -71,6 +71,11 @@ class bankAccount {
     //historie pohybu penez na ucte
     ArrayList<String> previousTransaction = new ArrayList<>();
 
+
+
+
+
+
     void deposit(int amount) {
         if (balance != 0) {
             balance = balance + amount;
@@ -81,6 +86,7 @@ class bankAccount {
     void withdraw(int amount) {
         if (balance != 0) {
             balance = balance - amount;
+
             previousTransaction.add("-" + String.valueOf(amount) + " Category: Withdraw");
         }
     }
