@@ -3,9 +3,10 @@ package com.company;
 import java.io.*;
 
 public class InputOutput {
+    Main m = new Main();
+    File file = new File(m.USERNAME + ".txt");// deklarace souboru
 
-    public static void createFile(String name) {
-        File file = new File("logs/" + name + ".txt");// deklarace souboru
+    public void createFile(String name) {
         boolean rs;
 
         try {
@@ -18,9 +19,10 @@ public class InputOutput {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
-    public void writeToFile(String name, String info){
+    public void writeToFile(String name, String info) {
         try {
             FileOutputStream fos = new FileOutputStream(name, true);
             byte[] b = info.getBytes();
@@ -32,15 +34,27 @@ public class InputOutput {
         }
     }
 
-    public void readFile(String name, String info){
+    public void readFile(String name) {
+        InputStream input = null;
         try {
-            File file = new File(name); // instance souboru
-            FileReader fr = new FileReader(file); //nacteni souboru
-            BufferedReader br = new BufferedReader(fr);//ukladani dat do vyrovnavaci pameti
-            StringBuffer sb = new StringBuffer();
-            System.out.println(sb.toString());
+            input = new BufferedInputStream(new FileInputStream(name));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        }
+        byte[] buffer = new byte[8192];
+
+        try {
+            for (int length = 0; (length = input.read(buffer)) != -1;) {
+                System.out.write(buffer, 0, length);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                input.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
