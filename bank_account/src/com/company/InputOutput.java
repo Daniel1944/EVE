@@ -1,10 +1,16 @@
 package com.company;
 
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class InputOutput {
-    Main m = new Main();
-    File file = new File(m.USERNAME + ".txt");// deklarace souboru
+    File file = new File(Main.USERNAME + ".txt");// deklarace souboru
+
+    ErrorPrinting ep = new ErrorPrinting();
+
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
 
     public void createFile(String name) {
         boolean rs;
@@ -17,7 +23,7 @@ public class InputOutput {
                 System.out.println("File already exist at location: " + file.getCanonicalPath());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            ep.writeToFile("ERROR IOException:" + "\n Chyba v metode createFile: " + e.toString() + "\n V case: " + dtf.format(now));
         }
 
     }
@@ -30,7 +36,7 @@ public class InputOutput {
             fos.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            ep.writeToFile("ERROR IOException:" + "\n Chyba v metode writeToFile: " + e.toString() + "\n V case: " + dtf.format(now));
         }
     }
 
@@ -38,22 +44,19 @@ public class InputOutput {
         InputStream input = null;
         try {
             input = new BufferedInputStream(new FileInputStream(name));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        byte[] buffer = new byte[8192];
-
-        try {
-            for (int length = 0; (length = input.read(buffer)) != -1;) {
+            byte[] buffer = new byte[8192];
+            for (int length = 0; (length = input.read(buffer)) != -1; ) {
                 System.out.write(buffer, 0, length);
             }
+        } catch (FileNotFoundException e) {
+            ep.writeToFile("ERROR FileNotFoundException:" + "\n Chyba v metode readFile: " + e.toString() + "\n V case: " + dtf.format(now));
         } catch (IOException e) {
-            e.printStackTrace();
+            ep.writeToFile("ERROR IOException:" + "\n Chyba v metode readFile: " + e.toString() + "\n V case: " + dtf.format(now));
         } finally {
             try {
                 input.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                ep.writeToFile("ERROR IOException:" + "\n Chyba v metode readFile ve final bloku: " + e.toString() + "\n V case: " + dtf.format(now));
             }
         }
     }

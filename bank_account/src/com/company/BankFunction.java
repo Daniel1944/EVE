@@ -15,14 +15,14 @@ class bank_function {
     void deposit(int amount) {
         if (balance != 0) {
             balance = balance + amount;
-            io.writeToFile(USERNAME + ".txt", "+" + String.valueOf(amount) + " Category: Deposit" + "\n");
+            io.writeToFile(USERNAME + ".txt", "+" + amount + " Category: Deposit" + "\n");
         }
     }
 
     void withdraw(int amount) {
         if (balance != 0) {
             balance = balance - amount;
-            io.writeToFile(USERNAME + ".txt", "\n" + "-" + String.valueOf(amount) + " Category: Withdraw");
+            io.writeToFile("USERNAME" + ".txt", "\n" + "-" + amount + " Category: Withdraw");
         }
     }
 
@@ -30,7 +30,7 @@ class bank_function {
         if (account.length() == 16) {
             if (balance >= amount) {
                 balance = balance - amount;
-                io.writeToFile(USERNAME + ".txt", "\n" + "+" + String.valueOf(amount) + " Category: transfer to account(" + encAccount(account) + ")");
+                io.writeToFile(USERNAME + ".txt", "\n" + "+" + amount + " Category: transfer to account(" + encAccount(account) + ")");
             }
         }
     }

@@ -13,7 +13,7 @@ public class Main {
         String psw = sc.nextLine();
 
         InputOutput io = new InputOutput();
-        io.createFile(USERNAME + ".txt");
+      //  io.createFile(USERNAME + ".txt");
 
         if (bA.login(name, psw)) {
             System.out.println("Vitejte ve vasem bakonvnictvi " + name + ".");

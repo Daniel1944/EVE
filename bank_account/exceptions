@@ -1,0 +1,5 @@
+ERROR FileNotFoundException:
+ Chyba v metode readFile: java.io.FileNotFoundException: Daniel1944.txt (The system cannot find the file specified)
+ V case: 2020/11/04 02:18:02ERROR FileNotFoundException:
+ Chyba v metode readFile: java.io.FileNotFoundException: Daniel1944.txt (The system cannot find the file specified)
+ V case: 2020/11/04 02:19:41
