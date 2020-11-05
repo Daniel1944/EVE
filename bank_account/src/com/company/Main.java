@@ -8,7 +8,10 @@ public class Main {
 
     public static void main(String[] args) {
         bank_function bA = new bank_function();
-        System.out.println("Ahoj víta te tvá poradkyne Eve");
+
+        System.out.println("Ahoj jsi zaregistrovan do EVE? (Y/N)");
+
+        //System.out.println("Ahoj víta te tvá poradkyne Eve");
         String name = sc.nextLine();
         String psw = sc.nextLine();
 
