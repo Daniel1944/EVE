@@ -7,16 +7,18 @@ public class Main {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        bank_function bA = new bank_function();
+        BankFunction bA = new BankFunction();
+        Registration reg = new Registration();
+        InputOutput io = new InputOutput();
 
-        System.out.println("Ahoj jsi zaregistrovan do EVE? (Y/N)");
 
+        io.createFile(USERNAME + ".txt");
+        reg.insertData();
+        reg.printData();
         //System.out.println("Ahoj víta te tvá poradkyne Eve");
-        String name = sc.nextLine();
+       /* String name = sc.nextLine();
         String psw = sc.nextLine();
 
-        InputOutput io = new InputOutput();
-      //  io.createFile(USERNAME + ".txt");
 
         if (bA.login(name, psw)) {
             System.out.println("Vitejte ve vasem bakonvnictvi " + name + ".");
@@ -26,7 +28,7 @@ public class Main {
             psw = sc.nextLine();
             bA.login(name, psw);
         }
-        String menu = ("Vyberte si funkci" + "\n" + "1) Vyber" + "\n" + "2) Vklad" + "\n" + "3) Tranfer" + "\n" + "4) Historie transakci" + "\n" + "5) Odhlasit se");
+*/        String menu = ("Vyberte si funkci" + "\n" + "1) Vyber" + "\n" + "2) Vklad" + "\n" + "3) Tranfer" + "\n" + "4) Historie transakci" + "\n" + "5) Odhlasit se");
         System.out.println(menu);
 
         int choice;

@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 
-class bank_function {
+class BankFunction {
     int balance = 40000;
     //historie pohybu penez na ucte
     ArrayList<String> previousTransaction = new ArrayList<>();
