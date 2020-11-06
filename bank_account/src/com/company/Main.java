@@ -15,6 +15,7 @@ public class Main {
         io.createFile(USERNAME + ".txt");
         reg.insertData();
         reg.printData();
+
         //System.out.println("Ahoj víta te tvá poradkyne Eve");
        /* String name = sc.nextLine();
         String psw = sc.nextLine();

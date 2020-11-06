@@ -9,6 +9,7 @@ public class Registration {
 
     static Scanner sc = new Scanner(System.in);
     static List<UserData> data = new ArrayList<UserData>();
+    Crypto.Caesar cs = new Crypto.Caesar();
 
     void insertData() {
         System.out.println("Ahoj, vítá tě Eve tvá manažerka financí");
@@ -20,6 +21,7 @@ public class Registration {
         System.out.println("HESLO: ");
         String password = sc.nextLine();
 
+        password = cs.encrypt(password);
         UserData user1 = new UserData(1, name, email, password);
         data.add(user1);
     }

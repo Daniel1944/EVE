@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class Crypto {
     static final char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
 
-    public class Caesar implements BasicCrypto {
+     static class Caesar implements BasicCrypto {
         @Override
         public String encrypt(String data) {
             data = data.toLowerCase();
