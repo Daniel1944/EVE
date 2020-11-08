@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class Registration {
 
     static Scanner sc = new Scanner(System.in);
-    static List<UserData> data = new ArrayList<UserData>();
     Crypto.Caesar cs = new Crypto.Caesar();
+    SQLQueries sqlQueries = new SQLQueries();
 
     void insertData() {
         System.out.println("Ahoj, vítá tě Eve tvá manažerka financí");
@@ -20,12 +20,9 @@ public class Registration {
         String email = sc.nextLine();
         System.out.println("HESLO: ");
         String password = sc.nextLine();
-
         password = cs.encrypt(password);
-        UserData user1 = new UserData(1, name, email, password);
-        data.add(user1);
-    }
-    void printData(){
-        System.out.println(data.toString());
+
+        sqlQueries.insertToTable(name, email, password);
+
     }
 }

@@ -11,10 +11,15 @@ public class Main {
         Registration reg = new Registration();
         InputOutput io = new InputOutput();
 
+        System.out.println("Ahoj mas ucet v EVE? (Y/N)");
+        String choice = sc.nextLine();
+        if (choice.equals("N")) {
+            reg.insertData();
+        } else if (choice.equals("Y")) {
+            
+        }
 
         io.createFile(USERNAME + ".txt");
-        reg.insertData();
-        reg.printData();
 
         //System.out.println("Ahoj víta te tvá poradkyne Eve");
        /* String name = sc.nextLine();
@@ -29,14 +34,15 @@ public class Main {
             psw = sc.nextLine();
             bA.login(name, psw);
         }
-*/        String menu = ("Vyberte si funkci" + "\n" + "1) Vyber" + "\n" + "2) Vklad" + "\n" + "3) Tranfer" + "\n" + "4) Historie transakci" + "\n" + "5) Odhlasit se");
+*/
+        String menu = ("Vyberte si funkci" + "\n" + "1) Vyber" + "\n" + "2) Vklad" + "\n" + "3) Tranfer" + "\n" + "4) Historie transakci" + "\n" + "5) Odhlasit se");
         System.out.println(menu);
 
-        int choice;
+        int choices;
         int amount;
         do {
-            choice = sc.nextInt();
-            switch (choice) {
+            choices = sc.nextInt();
+            switch (choices) {
                 case 1 -> {
                     System.out.println("Kolik peneze si prejete vybrat?");
                     amount = sc.nextInt();
@@ -65,7 +71,7 @@ public class Main {
                     System.out.println(menu);
                 }
             }
-        } while (choice != 5);
+        } while (choices != 5);
     }
 
 
