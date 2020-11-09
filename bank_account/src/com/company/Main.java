@@ -3,23 +3,26 @@ package com.company;
 import java.util.Scanner;
 
 public class Main {
-    public final static String USERNAME = "Daniel1944";
+
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+        System.out.println("Ahoj mas ucet v EVE? (Y/N)");
+        String choice = sc.nextLine();
+        choice.toUpperCase();
+
         BankFunction bA = new BankFunction();
         Registration reg = new Registration();
         InputOutput io = new InputOutput();
+        Login log = new Login();
 
-        System.out.println("Ahoj mas ucet v EVE? (Y/N)");
-        String choice = sc.nextLine();
         if (choice.equals("N")) {
             reg.insertData();
+            io.createFile(log.USERNAME + ".txt");
         } else if (choice.equals("Y")) {
-            
+            log.insertLogin();
         }
 
-        io.createFile(USERNAME + ".txt");
 
         //System.out.println("Ahoj víta te tvá poradkyne Eve");
        /* String name = sc.nextLine();
@@ -67,7 +70,7 @@ public class Main {
                 }
                 case 4 -> {
                     System.out.println("Zde je vase historie transakci: ");
-                    io.readFile(USERNAME + ".txt");
+                    io.readFile(log.USERNAME + ".txt");
                     System.out.println(menu);
                 }
             }

@@ -5,7 +5,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class InputOutput implements BasicInputOutput {
-    File file = new File(Main.USERNAME + ".txt");// deklarace souboru
+    Login loginName = new Login();
+    File file = new File(loginName.USERNAME + ".txt");// deklarace souboru
 
 
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
