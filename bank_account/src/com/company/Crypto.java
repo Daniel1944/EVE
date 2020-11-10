@@ -10,7 +10,6 @@ public class Crypto {
      static class Caesar implements BasicCrypto {
         @Override
         public String encrypt(String data) {
-            data = data.toLowerCase();
             char[] arr = data.toCharArray();
             loop1:
             for (int i = 0; i < arr.length; i++) {
