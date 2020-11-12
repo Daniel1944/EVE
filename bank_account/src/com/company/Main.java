@@ -1,5 +1,12 @@
 package com.company;
 
+import com.company.authentication.Login;
+import com.company.authentication.Registration;
+import com.company.authentication.SQLQueries;
+import com.company.functionalities.BankFunction;
+import com.company.functionalities.CryptoFunction;
+import com.company.functionalities.InputOutputFunction;
+
 import java.util.Scanner;
 
 public class Main {
@@ -9,35 +16,27 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Ahoj mas ucet v EVE? (Y/N)");
         String choice = sc.nextLine();
-        choice.toUpperCase();
+        choice = choice.toUpperCase();
 
-        BankFunction bA = new BankFunction();
-        Registration reg = new Registration();
-        InputOutput io = new InputOutput();
-        Login log = new Login();
+        var bA = new BankFunction();
+        var reg = new Registration();
+        var io = new InputOutputFunction();
+        var log = new Login();
 
-        if (choice.equals("N")) {
-            reg.insertData();
-            io.createFile(log.USERNAME + ".txt");
-        } else if (choice.equals("Y")) {
-            log.insertLogin();
-        }
+        boolean isRunning = true;
+        do {
+            if (choice.equals("N")) {
+                reg.insertData();
+                isRunning = false;
+            } else if (choice.equals("Y")) {
+                log.insertLogin();
+                isRunning = false;
+            } else {
+                System.out.println("Zadal si neplatný znak. Zkus to znova ;)");
+                isRunning = true;
+            }
+        } while (isRunning);
 
-
-        //System.out.println("Ahoj víta te tvá poradkyne Eve");
-       /* String name = sc.nextLine();
-        String psw = sc.nextLine();
-
-
-        if (bA.login(name, psw)) {
-            System.out.println("Vitejte ve vasem bakonvnictvi " + name + ".");
-        } else {
-            System.out.println("Zadal jste spatne jmeno nebo heslo zkuste to znovu ");
-            name = sc.nextLine();
-            psw = sc.nextLine();
-            bA.login(name, psw);
-        }
-*/
         String menu = ("Vyberte si funkci" + "\n" + "1) Vyber" + "\n" + "2) Vklad" + "\n" + "3) Tranfer" + "\n" + "4) Historie transakci" + "\n" + "5) Odhlasit se");
         System.out.println(menu);
 
@@ -70,7 +69,7 @@ public class Main {
                 }
                 case 4 -> {
                     System.out.println("Zde je vase historie transakci: ");
-                    io.readFile(log.USERNAME + ".txt");
+                   // io.readFile(log.USERNAME + ".txt");
                     System.out.println(menu);
                 }
             }
