@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Registration {
 
+    private static final String ADMIN_TOKEN_KEY = "XYZFF00";
     static Scanner sc = new Scanner(System.in);
     CryptoFunction.Caesar cs = new CryptoFunction.Caesar();
     SQLQueries sqlQueries = new SQLQueries();
@@ -22,7 +23,15 @@ public class Registration {
         String password = sc.nextLine();
         password = cs.encrypt(password);
 
-        SQLQueries.User user = new SQLQueries.User(name, email, password);
+        System.out.println("Máte administrační token?");
+        String token = sc.nextLine();
+        String role;
+        if (token.equals(ADMIN_TOKEN_KEY))
+            role = "admin";
+        else
+            role = "user";
+
+        SQLQueries.User user = new SQLQueries.User(name, email, password, role, 0);
 
         sqlQueries.insertToTable(user);
 

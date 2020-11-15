@@ -8,11 +8,15 @@ public class SQLQueries {
         String name;
         String email;
         String password;
+        String role;
+        int balance;
 
-        public User(String name, String email, String password) {
+        public User(String name, String email, String password, String role, int balance) {
             this.name = name;
             this.email = email;
             this.password = password;
+            this.role = role;
+            this.balance = balance;
         }
 
     }
@@ -31,13 +35,15 @@ public class SQLQueries {
     }
 
     public void insertToTable(User user) {
-        String sqlQuery = "INSERT INTO user_data (user_name, email, password) VALUES (?,?,?)";
+        String sqlQuery = "INSERT INTO user_data (user_name, email, password, role, balance) VALUES (?,?,?.?,?)";
 
         try (Connection con = this.connectToDB()) {
             PreparedStatement psmt = con.prepareStatement(sqlQuery);
             psmt.setString(1, user.name);
             psmt.setString(2, user.email);
             psmt.setString(3, user.password);
+            psmt.setString(4, user.role);
+            psmt.setInt(5, user.balance);
             psmt.executeUpdate();
             psmt.close();
         } catch (SQLException throwables) {
@@ -62,6 +68,4 @@ public class SQLQueries {
 
         return user;
     }
-
-
 }
