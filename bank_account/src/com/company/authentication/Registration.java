@@ -23,7 +23,7 @@ public class Registration {
         String password = sc.nextLine();
         password = cs.encrypt(password);
 
-        System.out.println("Máte administrační token?");
+        System.out.println("Máte administrační token? \n Pokud ano tak ho zadaejte pokud ne zadejte N");
         String token = sc.nextLine();
         String role;
         if (token.equals(ADMIN_TOKEN_KEY))
@@ -34,6 +34,7 @@ public class Registration {
         SQLQueries.User user = new SQLQueries.User(name, email, password, role, 0);
 
         sqlQueries.insertToTable(user);
+
 
     }
 }

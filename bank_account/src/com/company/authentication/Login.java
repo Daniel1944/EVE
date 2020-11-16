@@ -13,16 +13,17 @@ public class Login {
     SQLQueries.User loginUser = sqlQueries.extractData();
 
     public void insertLogin() {
-        System.out.println("Vítej uřivateli zadej prosím své uživatelské jméno a heslo");
+        System.out.println("Vítej uřivateli zadej prosím svuj email a heslo");
         boolean isRunning = true;
 
         do {
-            System.out.println("Username:");
-            String name = sc.next();
+            System.out.println("Email:");
+            String email = sc.next();
             System.out.println("Password: ");
             String password = sc.next();
             password = cs.encrypt(password);
-            if (name.equals(loginUser.name) & password.equals(loginUser.password)) {
+            if (email.equals(loginUser.email) & password.equals(loginUser.password)) {
+
                 isRunning = false;
             } else
                 System.out.println("Udaje neodpovídají zkuste to znovu");
