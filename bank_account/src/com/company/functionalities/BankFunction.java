@@ -13,9 +13,13 @@ public class BankFunction {
 
     SQLQueries.User loginUser = sqlQueries.extractData();
 
-    double balance = loginUser.getBalance();
+    public double balance = loginUser.getBalance();
     int id = sqlQueries.getId();
     String date = "'" + dtf.format(now) + "'";
+
+    public void monthRevenues(){
+    }
+}
 
     public void deposit(double amount, String type, String category) {
         type = "'" + type + "'";
@@ -33,21 +37,29 @@ public class BankFunction {
         sqlQueries.updateBalance(balance - amount, id);
     }
 
-    public void transfer(int amount, String account) {
+    public void transfer(int amount, String account, String type, String category) {
         if (account.length() == 16) {
             if (balance >= amount) {
+                type = "'" + type + "'";
+                category = "'" + category + "'";
                 balance = balance - amount;
-                //  io.writeToFile(loginName.USERNAME + ".txt", "\n" + "+" + amount + " Category: transfer to account(" + encAccount(account) + ")");
+                String sql = "INSERT INTO account_activities (user_id, amount, type, date, category) VALUES (" + id + ", " + amount + ", " + type + ", " + date + ", " + category + ")";
+                sqlQueries.updateBalance(balance - amount, id);
             }
         }
     }
 
-    String encAccount(String accout) {
-        String[] arr = accout.split("");
-        for (int i = 0; i < arr.length - 4; i++) {
-            arr[i] = "#";
-        }
-        accout = String.join("", arr);
-        return accout;
+    private void monthlySalary(int amount, String type, String category){
+        if (now.getDayOfMonth() == 9){
     }
+/**
+ String encAccount(String accout) {
+ String[] arr = accout.split("");
+ for (int i = 0; i < arr.length - 4; i++) {
+ arr[i] = "#";
+ }
+ accout = String.join("", arr);
+ return accout;
+ }
+ */
 }

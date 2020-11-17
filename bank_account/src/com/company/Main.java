@@ -22,12 +22,12 @@ public class Main {
         var log = new Login();
         var sql = new SQLQueries();
 
-
         boolean isRunning;
         do {
             if (choice.equals("N")) {
                 reg.insertData();
                 uniqueID = sql.getId();
+                log.insertLogin();
                 isRunning = false;
             } else if (choice.equals("Y")) {
                 log.insertLogin();
@@ -51,22 +51,22 @@ public class Main {
                     System.out.println("Kolik peneze si prejete vybrat?");
                     amount = sc.nextInt();
                     bA.withdraw(amount, "withdraw", "ATM withdraw");
-                    //System.out.println("Vybral jste si: " + amount + "CZK." + "\n" + "Vas zustatek je: " + bA.balance + "CZK.");
+                    System.out.println("Vybral jste si: " + amount + "CZK." + "\n" + "Vas zustatek je: " + bA.balance + "CZK.");
                     System.out.println(menu);
                 }
                 case 2 -> {
                     System.out.println("Vlozte penize");
                     amount = sc.nextInt();
                     bA.deposit(amount, "deposit", "ATM deposit");
-                   // System.out.println("Vlozil jste si na ucet: " + amount + "CZK." + "\n" + "Vas zustatek je: " + bA.balance + "CZK.");
+                    System.out.println("Vlozil jste si na ucet: " + amount + "CZK." + "\n" + "Vas zustatek je: " + bA.balance + "CZK.");
                     System.out.println(menu);
                 }
                 case 3 -> {
                     System.out.println("Zadejte cislo uctu kam chcete prevest penize a jakou sumu chcete prevest.");
                     String accout = sc.nextLine();
                     amount = sc.nextInt();
-                    //bA.transfer(amount, accout);
-                   // System.out.println("Vlozil jste si na ucet: " + accout + " sumu" + amount + "CZK." + "\n" + "Vas zustatek je: " + bA.balance + "CZK.");
+                    bA.transfer(amount, accout, "money transfer", ("Transfer to account +" + accout));
+                    System.out.println("Vlozil jste si na ucet: " + accout + " sumu" + amount + "CZK." + "\n" + "Vas zustatek je: " + bA.balance + "CZK.");
                     System.out.println(menu);
                 }
                 case 4 -> {

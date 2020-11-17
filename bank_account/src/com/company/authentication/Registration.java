@@ -7,7 +7,9 @@ import java.util.Scanner;
 public class Registration {
 
     private static final String ADMIN_TOKEN_KEY = "XYZFF00";
+
     static Scanner sc = new Scanner(System.in);
+
     CryptoFunction.Caesar cs = new CryptoFunction.Caesar();
     SQLQueries sqlQueries = new SQLQueries();
 
@@ -32,8 +34,8 @@ public class Registration {
             role = "user";
 
         SQLQueries.User user = new SQLQueries.User(name, email, password, role, 0);
-
         sqlQueries.insertToTable(user);
+
 
 
     }
