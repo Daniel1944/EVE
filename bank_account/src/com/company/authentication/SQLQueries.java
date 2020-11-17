@@ -35,8 +35,7 @@ public class SQLQueries {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return con;
+    return con;
     }
 
     public void insertToTable(User user) {
@@ -96,13 +95,13 @@ public class SQLQueries {
         }
     }
 
-    public void updateBalance(int id, double balance){
+    public void updateBalance(double balance, int id) {
         String sql = "UPDATE user_data SET balance = ? "
                 + "WHERE id = ?";
         try (Connection conn = this.connectToDB();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
-            pstmt.setDouble(2, balance);
+            pstmt.setDouble(1, balance);
+            pstmt.setInt(2, id);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

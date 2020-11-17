@@ -22,8 +22,7 @@ public class BankFunction {
         category = "'" + category + "'";
         String sql = "INSERT INTO account_activities (user_id, amount, type, date, category) VALUES (" + id + ", " + amount + ", " + type + ", " + date + ", " + category + ")";
         sqlQueries.bankFunction(sql);
-
-        sqlQueries.updateBalance(id, (amount + balance));
+        sqlQueries.updateBalance(balance + amount, id);
     }
 
     public void withdraw(double amount, String type, String category) {
@@ -31,8 +30,7 @@ public class BankFunction {
         category = "'" + category + "'";
         String sql = "INSERT INTO account_activities (user_id, amount, type, date, category) VALUES (" + id + ", " + amount + ", " + type + ", " + date + ", " + category + ")";
         sqlQueries.bankFunction(sql);
-
-        sqlQueries.updateBalance(id, (balance - amount));
+        sqlQueries.updateBalance(balance - amount, id);
     }
 
     public void transfer(int amount, String account) {

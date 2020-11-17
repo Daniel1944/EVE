@@ -23,7 +23,7 @@ public class Main {
         var sql = new SQLQueries();
 
 
-        boolean isRunning = true;
+        boolean isRunning;
         do {
             if (choice.equals("N")) {
                 reg.insertData();
@@ -34,7 +34,7 @@ public class Main {
                 uniqueID = sql.getId();
                 isRunning = false;
             } else {
-                System.out.println("Zadal si neplatný znak. Zkus to znova ;)");
+                System.out.println("Zadal si neplatný znak. Zkus to znova )");
                 isRunning = true;
             }
         } while (isRunning);
