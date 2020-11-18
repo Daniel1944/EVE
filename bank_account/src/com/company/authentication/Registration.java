@@ -1,5 +1,6 @@
 package com.company.authentication;
 
+import com.company.Constructors.User;
 import com.company.functionalities.CryptoFunction;
 
 import java.util.Scanner;
@@ -33,7 +34,7 @@ public class Registration {
         else
             role = "user";
 
-        SQLQueries.User user = new SQLQueries.User(name, email, password, role, 0);
+        User user = new User(name, email, password, role, 0);
         sqlQueries.insertToTable(user);
 
 

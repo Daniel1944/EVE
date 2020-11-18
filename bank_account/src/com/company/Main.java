@@ -39,7 +39,7 @@ public class Main {
             }
         } while (isRunning);
 
-        String menu = ("Vyberte si funkci" + "\n" + "1) Vyber" + "\n" + "2) Vklad" + "\n" + "3) Tranfer" + "\n" + "4) Historie transakci" + "\n" + "5) Odhlasit se");
+        String menu = ("Vyberte si funkci" + "\n" + "1) Vyber" + "\n" + "2) Vklad" + "\n" + "3) Tranfer" + "\n" + "4) Historie transakci" + "\n" + "5) Pridat mesicni akce" + "\n" + "6) Odhlasit se");
         System.out.println(menu);
 
         int choices;
@@ -63,10 +63,10 @@ public class Main {
                 }
                 case 3 -> {
                     System.out.println("Zadejte cislo uctu kam chcete prevest penize a jakou sumu chcete prevest.");
-                    String accout = sc.nextLine();
+                    String account = sc.next();
                     amount = sc.nextInt();
-                    bA.transfer(amount, accout, "money transfer", ("Transfer to account +" + accout));
-                    System.out.println("Vlozil jste si na ucet: " + accout + " sumu" + amount + "CZK." + "\n" + "Vas zustatek je: " + bA.balance + "CZK.");
+                    bA.transfer(amount, account, "money transfer", ("Transfer to account +" + account));
+                    System.out.println("Vlozil jste si na ucet: " + account + " sumu" + amount + "CZK." + "\n" + "Vas zustatek je: " + bA.balance + "CZK.");
                     System.out.println(menu);
                 }
                 case 4 -> {
@@ -74,8 +74,11 @@ public class Main {
                    // io.readFile(log.USERNAME + ".txt");
                     System.out.println(menu);
                 }
+                case 5 -> {
+                    System.out.println("Pridejte vase mesicni platby/prijmi");
+                }
             }
-        } while (choices != 5);
+        } while (choices != 6);
     }
 
 

@@ -1,5 +1,6 @@
 package com.company.authentication;
 
+import com.company.Constructors.User;
 import com.company.functionalities.CryptoFunction;
 
 import java.util.Scanner;
@@ -10,7 +11,7 @@ public class Login {
     SQLQueries sqlQueries = new SQLQueries();
     CryptoFunction.Caesar cs = new CryptoFunction.Caesar();
 
-    SQLQueries.User loginUser = sqlQueries.extractData();
+    User loginUser = sqlQueries.extractData();
 
     public void insertLogin() {
         System.out.println("Vítej uřivateli zadej prosím svuj email a heslo");

@@ -1,30 +1,12 @@
 package com.company.authentication;
 
+import com.company.Constructors.RegularPayments;
+import com.company.Constructors.User;
+import com.company.Constructors.RegularPayments;
+
 import java.sql.*;
 
 public class SQLQueries {
-
-    public static class User {
-
-        String name;
-        String email;
-        String password;
-        String role;
-        int balance;
-
-        public User(String name, String email, String password, String role, int balance) {
-
-            this.name = name;
-            this.email = email;
-            this.password = password;
-            this.role = role;
-            this.balance = balance;
-        }
-
-        public int getBalance() {
-            return balance;
-        }
-    }
 
     public Connection connectToDB() {
 
@@ -47,13 +29,30 @@ public class SQLQueries {
             psmt.setString(2, user.email);
             psmt.setString(3, user.password);
             psmt.setString(4, user.role);
-            psmt.setInt(5, user.balance);
+            psmt.setDouble(5, user.balance);
             psmt.executeUpdate();
             psmt.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
+
+    public void insertToTable(RegularPayments regP){
+        String sqlQuery = "INSERT INTO regular_payments (id, type, amount, date) VALUES (?,?,?,?,?)";
+
+        try (Connection con = this.connectToDB()) {
+            PreparedStatement psmt = con.prepareStatement(sqlQuery);
+            psmt.setInt(1,regP.id);
+            psmt.setString(2,regP.type);
+            psmt.setDouble(3,regP.amount);
+            psmt.setString(4,regP.date);
+            psmt.executeUpdate();
+            psmt.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
 
     public User extractData() {
         String sqlQuery = "SELECT user_name, email, password, role, balance FROM user_data";
