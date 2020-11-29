@@ -71,6 +71,22 @@ public class SQLQueries {
         }
         return user;
     }
+    public RegularPayments extractMonthlyRevenue() {
+        String sqlQuery = "SELECT user_id, amount, type, role, balance FROM monthly_revenue";
+        RegularPayments regularPayments = new RegularPayments(0, 0, "", "");
+        try (Connection con = this.connectToDB()) {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(sqlQuery);
+            regularPayments.id = rs.getInt("user_id");
+            regularPayments.amount = rs.getDouble("amount");
+            regularPayments.type = rs.getString("type");
+            regularPayments.date = rs.getString("date");
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return regularPayments;
+    }
 
     public int getId() {
         String sqlQuery = "SELECT id FROM user_data";

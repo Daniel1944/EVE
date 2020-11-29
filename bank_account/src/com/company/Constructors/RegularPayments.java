@@ -2,14 +2,14 @@ package com.company.Constructors;
 
 public class RegularPayments {
     public int id;
-    public String type;
     public double amount;
+    public String type;
     public String date;
 
-    public RegularPayments(int id,String type, double amount, String date) {
+    public RegularPayments(int id, double amount, String type, String date) {
         this.id = id;
-        this.type = type;
         this.amount = amount;
+        this.type = type;
         this.date = date;
     }
 }
