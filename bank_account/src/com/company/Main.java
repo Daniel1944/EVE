@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.Constructors.RegularPayments;
 import com.company.authentication.Login;
 import com.company.authentication.Registration;
 import com.company.authentication.SQLQueries;
@@ -43,20 +44,20 @@ public class Main {
         System.out.println(menu);
 
         int choices;
-        int amount;
+        double amount;
         do {
             choices = sc.nextInt();
             switch (choices) {
                 case 1 -> {
                     System.out.println("Kolik peneze si prejete vybrat?");
-                    amount = sc.nextInt();
+                    amount = sc.nextDouble();
                     bA.withdraw(amount, "withdraw", "ATM withdraw");
                     System.out.println("Vybral jste si: " + amount + "CZK." + "\n" + "Vas zustatek je: " + bA.balance + "CZK.");
                     System.out.println(menu);
                 }
                 case 2 -> {
                     System.out.println("Vlozte penize");
-                    amount = sc.nextInt();
+                    amount = sc.nextDouble();
                     bA.deposit(amount, "deposit", "ATM deposit");
                     System.out.println("Vlozil jste si na ucet: " + amount + "CZK." + "\n" + "Vas zustatek je: " + bA.balance + "CZK.");
                     System.out.println(menu);
@@ -64,7 +65,7 @@ public class Main {
                 case 3 -> {
                     System.out.println("Zadejte cislo uctu kam chcete prevest penize a jakou sumu chcete prevest.");
                     String account = sc.next();
-                    amount = sc.nextInt();
+                    amount = sc.nextDouble();
                     bA.transfer(amount, account, "money transfer", ("Transfer to account +" + account));
                     System.out.println("Vlozil jste si na ucet: " + account + " sumu" + amount + "CZK." + "\n" + "Vas zustatek je: " + bA.balance + "CZK.");
                     System.out.println(menu);
@@ -76,6 +77,14 @@ public class Main {
                 }
                 case 5 -> {
                     System.out.println("Pridejte vase mesicni platby/prijmi");
+                    System.out.println("Zadejte sumu");
+                    amount = sc.nextDouble();
+                    System.out.println("Zadejte o jakou platbu se jedná.");
+                    String type = sc.nextLine();
+                    System.out.println("Zadejte den splatnosti.");
+                    int day = sc.nextInt();
+                    RegularPayments regularPayments = new RegularPayments(uniqueID, amount, type, day);
+                    sql.insertToTable(regularPayments);
                 }
             }
         } while (choices != 6);

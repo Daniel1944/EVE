@@ -18,11 +18,6 @@ public class BankFunction {
     int id = sqlQueries.getId();
     String date = "'" + dtf.format(now) + "'";
 
-    public void monthRevenues() {
-    }
-
-
-
     public void deposit(double amount, String type, String category) {
         type = "'" + type + "'";
         category = "'" + category + "'";
@@ -36,24 +31,23 @@ public class BankFunction {
         category = "'" + category + "'";
         String sql = "INSERT INTO account_activities (user_id, amount, type, date, category) VALUES (" + id + ", " + amount + ", " + type + ", " + date + ", " + category + ")";
         sqlQueries.bankFunction(sql);
-        sqlQueries.updateBalance(balance - amount, id);
+        sqlQueries.updateBalance(balance + amount, id);
     }
 
-    public void transfer(int amount, String account, String type, String category) {
+    public void transfer(double amount, String account, String type, String category) {
         if (account.length() == 16) {
             if (balance >= amount) {
                 type = "'" + type + "'";
                 category = "'" + category + "'";
                 balance = balance - amount;
                 String sql = "INSERT INTO account_activities (user_id, amount, type, date, category) VALUES (" + id + ", " + amount + ", " + type + ", " + date + ", " + category + ")";
-                sqlQueries.updateBalance(balance - amount, id);
+                sqlQueries.updateBalance(balance + amount, id);
             }
         }
     }
 
-    private void monthlySalary(int amount, String type, String category) {
-        if (now.getDayOfMonth() == 9) {
-        }
+}
+
 /**
  String encAccount(String accout) {
  String[] arr = accout.split("");
@@ -64,5 +58,4 @@ public class BankFunction {
  return accout;
  }
  */
-    }
-}
+

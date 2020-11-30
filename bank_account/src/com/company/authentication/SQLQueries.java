@@ -2,7 +2,6 @@ package com.company.authentication;
 
 import com.company.Constructors.RegularPayments;
 import com.company.Constructors.User;
-import com.company.Constructors.RegularPayments;
 
 import java.sql.*;
 
@@ -38,14 +37,14 @@ public class SQLQueries {
     }
 
     public void insertToTable(RegularPayments regP){
-        String sqlQuery = "INSERT INTO regular_payments (id, type, amount, date) VALUES (?,?,?,?,?)";
+        String sqlQuery = "INSERT INTO regular_payments (id, type, amount, day) VALUES (?,?,?,?,?)";
 
         try (Connection con = this.connectToDB()) {
             PreparedStatement psmt = con.prepareStatement(sqlQuery);
             psmt.setInt(1,regP.id);
             psmt.setString(2,regP.type);
             psmt.setDouble(3,regP.amount);
-            psmt.setString(4,regP.date);
+            psmt.setInt(4,regP.day);
             psmt.executeUpdate();
             psmt.close();
         } catch (SQLException throwables) {
@@ -72,15 +71,15 @@ public class SQLQueries {
         return user;
     }
     public RegularPayments extractMonthlyRevenue() {
-        String sqlQuery = "SELECT user_id, amount, type, role, balance FROM monthly_revenue";
-        RegularPayments regularPayments = new RegularPayments(0, 0, "", "");
+        String sqlQuery = "SELECT user_id, amount, type, day FROM regular_payments";
+        RegularPayments regularPayments = new RegularPayments(0, 0, "", 0);
         try (Connection con = this.connectToDB()) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(sqlQuery);
             regularPayments.id = rs.getInt("user_id");
             regularPayments.amount = rs.getDouble("amount");
             regularPayments.type = rs.getString("type");
-            regularPayments.date = rs.getString("date");
+            regularPayments.day = rs.getInt("day");
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -122,4 +121,5 @@ public class SQLQueries {
             System.out.println(e.getMessage());
         }
     }
+
 }
